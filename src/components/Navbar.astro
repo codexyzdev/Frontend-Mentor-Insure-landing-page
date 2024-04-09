@@ -1,0 +1,38 @@
+---
+import LinksDesktop from './LinksDesktop.astro'
+import LinksMobile from './LinksMobile.astro'
+---
+
+<div class="bg-white">
+	<nav class="flex max-w-6xl justify-between px-6
+ md:mx-auto">
+		<img src="/images/logo.svg" alt="logo" class="object-none py-7" />
+		<LinksMobile />
+		<LinksDesktop />
+		<button class="md:hidden">
+			<img
+				src="/images/icon-hamburger.svg"
+				class="object-none"
+				alt="icon close"
+				id="toggle-menu"
+			/>
+		</button>
+	</nav>
+</div>
+
+<script is:inline>
+	const linksMobile = document.getElementById('links-mobile')
+	const toggleMenu = document.getElementById('toggle-menu')
+	const iconMenu = ['/images/icon-close.svg', '/images/icon-hamburger.svg']
+	let open = true
+	toggleMenu.addEventListener('click', (e) => {
+		linksMobile.classList.toggle('active')
+		if (open) {
+			open = false
+			toggleMenu.setAttribute('src', iconMenu[0])
+		} else {
+			open = true
+			toggleMenu.setAttribute('src', iconMenu[1])
+		}
+	})
+</script>
